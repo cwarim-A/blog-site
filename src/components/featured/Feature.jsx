@@ -10,7 +10,7 @@ const Feature = () => {
       </h1>
       <div className={styles.post}>
         <div className={styles.imgContainer}>
-          <Image src="/p1.jpeg" fill className={styles.image} />
+          <Image src="/p1.jpeg" fill className={styles.image} alt="" />
         </div>
         <div className={styles.textContainer}>
           <h1 className={styles.postTitle}>Lorem ipsum dolor sit amet alim consectetur adipisicing elit.</h1>
