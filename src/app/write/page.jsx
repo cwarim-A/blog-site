@@ -2,11 +2,16 @@
 
 import Image from "next/image";
 import styles from "./write.module.css";
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
+import dynamic from "next/dynamic"; 
 import "react-quill/dist/quill.bubble.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+
+
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false }); // Disable SSR for ReactQuill
+
 
 const WritePage = () => {
   const { status } = useSession();
@@ -31,8 +36,8 @@ const WritePage = () => {
     return <div className={styles.loading}>Loading...</div>;
   }
 
-  // const handleFileUpload = async () => {
-  //   if (!file) return;
+  
+  
 
   //   setUploading(true);
 
@@ -74,24 +79,7 @@ const WritePage = () => {
       .replace(/[\s_-]+/g, "-")
       .replace(/^-+|-+$/g, "");
 
-  // const handleSubmit = async ()=>{
-  //   handleFileUpload();
-  //   const res = await fetch("/api/posts", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       title,
-  //       desc: value,
-  //       img: media,
-  //       slug: slugify(title),
-  //       catSlug: catSlug || "style", //If not selected, choose the general category
-  //     }),
-  //   });
-
-  //   if (res.status === 200) {
-  //     const data = await res.json();
-  //     router.push(`/posts/${data.slug}`);
-  //   }
-  // }
+  
 
   const handleSubmit = async () => {
     if (!file || !title || !value) {
@@ -139,8 +127,6 @@ const WritePage = () => {
 
       if (postResponse.status === 200) {
         const postData = await postResponse.json();
-        // setTitle("");
-        // setValue("");
         router.push(`/posts/${postData.slug}`);
        
       } else {
