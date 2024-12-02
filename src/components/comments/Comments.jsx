@@ -22,7 +22,7 @@ const Comments = ({ postSlug }) => {
   console.log(postSlug);
 
   const { data, mutate, error } = useSWR(
-    `http://localhost:3000/api/comments?postSlug=${postSlug}`,
+    `http://dblog-site.vercel.app/api/comments?postSlug=${postSlug}`,
     fetcher
   );
 
