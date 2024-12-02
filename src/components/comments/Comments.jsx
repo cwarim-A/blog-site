@@ -28,7 +28,7 @@ const Comments = ({ postSlug }) => {
 
   const [desc, setDesc] = useState("");
   const handleSubmit = async () => {
-    await fetch("/api/comments", {
+    await fetch("https://dblog-site.vercel.app/api/comments", {
       method: "POST",
       body: JSON.stringify({ desc, postSlug }),
     });
